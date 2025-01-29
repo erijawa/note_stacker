@@ -2,10 +2,14 @@ name: Deploy Heroku
 on:
   push:
     branches: main
+    paths: 'back/**'
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: back
     steps:
       - name: Checkout
         uses: actions/checkout@v3
