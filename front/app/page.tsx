@@ -1,5 +1,5 @@
 import { auth } from "@/auth";
-import SignInButton from "@/components/SignInButton";
+import SignInButton from "@/components/ui/SignInButton";
 
 export default async function RootPage() {
   const session = await auth();
