@@ -22,6 +22,6 @@ export const getOrCreateUser = async (provider: string, providerId: string, name
 }
 
 export const getOrCreateUserId = async (provider: string, providerId: string, name: string | null | undefined) => {
-  let user = await getOrCreateUser(provider, providerId, name)
+  const user = await getOrCreateUser(provider, providerId, name)
   return user.id;
 }
