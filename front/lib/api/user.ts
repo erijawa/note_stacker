@@ -1,15 +1,15 @@
-export const getUserById = async (id: string) => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/${process.env.NEXT_PUBLIC_API_VERSION}/users/${id}`, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    cache: 'no-cache',
-  });
-  return res.json();
-}
+// export const getUserById = async (id: string) => {
+//   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/${process.env.NEXT_PUBLIC_API_VERSION}/users/${id}`, {
+//     method: 'GET',
+//     headers: {
+//       'Content-Type': 'application/json',
+//     },
+//     cache: 'no-cache',
+//   });
+//   return res.json();
+// }
 
-export const createUser = async (provider: string, providerId: string, name: string) => {
+export const getOrCreateUser = async (provider: string, providerId: string, name: string | null | undefined) => {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/${process.env.NEXT_PUBLIC_API_VERSION}/users`, {
     method: 'POST',
     headers: {
@@ -19,4 +19,9 @@ export const createUser = async (provider: string, providerId: string, name: str
     cache: 'no-cache',
   });
   return res.json();
+}
+
+export const getOrCreateUserId = async (provider: string, providerId: string, name: string | null | undefined) => {
+  let user = await getOrCreateUser(provider, providerId, name)
+  return user.id;
 }
