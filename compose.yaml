@@ -11,6 +11,9 @@ services:
       - bundle_data:/usr/local/bundle
     ports:
       - "3306:3306"
+    networks:
+      fixed_compose_network:
+        ipv4_address: 172.20.0.4
   back:
     build:
       context: ./back
@@ -22,6 +25,9 @@ services:
       - "3000:3000"
     depends_on:
       - db
+    networks:
+      fixed_compose_network:
+        ipv4_address: 172.20.0.3
     tty: true
     stdin_open: true
     environment:
@@ -36,6 +42,15 @@ services:
     command: yarn dev -p 8000
     ports:
       - "8000:8000"
+    networks:
+      fixed_compose_network:
+        ipv4_address: 172.20.0.2
 volumes:
   mysql_data:
   bundle_data:
+networks:
+  fixed_compose_network:
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.20.0.0/24
