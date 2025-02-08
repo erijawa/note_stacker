@@ -14,4 +14,8 @@ class Api::V1::UsersController < ApplicationController
       render json: { error: e.message }, status: :internal_server_error
     end
   end
+
+  def user_params
+    params.require(:user).permit(:provider, :providerId, :name)
+  end
 end
