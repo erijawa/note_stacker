@@ -23,7 +23,8 @@ export default function PostCard({ post }: Props) {
             width="120"
           />
           <div className="space-y-2">
-            <h2 className="text-xl font-bold text-[#16404D]">{post.title}</h2>
+            {/* urlから取得した記事タイトルを反映予定 */}
+            <h2 className="text-xl font-bold text-[#16404D]">タイトル</h2>
             <p className="text-gray-700">
               {/* {post.article.description} */}
             </p>
@@ -31,7 +32,7 @@ export default function PostCard({ post }: Props) {
         </div>
         {post.comment && (
           <div className="mt-4 p-2 bg-gray-100 rounded-md">
-            <h3 className="text-lg font-semibold text-[#16404D]">Comments</h3>
+            <h3 className="text-lg font-semibold text-[#16404D]">コメント</h3>
             <p className="text-gray-700">{post.comment}</p>
           </div>
         )}
