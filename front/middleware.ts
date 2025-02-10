@@ -1,34 +1,14 @@
 import { auth } from "@/auth";
-// import NextAuth from 'next-auth';
-// import { authConfig } from '@/auth.config';
-import {
-  // apiAuthPrefix,
-  publicRoutes,
-  // DEFAULT_LOGIN_REDIRECT,
-} from '@/routes';
-
-// const { auth } = NextAuth(authConfig);
-// console.log(auth)
 
 export default auth((req) => {
-  const { nextUrl } = req;
-  const isLoggedIn = !!req.auth;
+  const userId = req.nextUrl.pathname.split('/')[2];
 
-  // const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix);
-  const isPublicRoute = publicRoutes.includes(nextUrl.pathname);
-
-  // if (isApiAuthRoute) {
-  //   return null;
-  // }
-
-  // if (!isLoggedIn && !isPublicRoute) {
-  //   return Response.redirect(new URL('/', nextUrl));
-  // }
-
-  // return null;
-
+  if (!req.auth || req.auth.user.id !== userId) {
+    const newUrl = new URL("/", req.nextUrl.origin); // ルートページにリダイレクト
+    return Response.redirect(newUrl);
+  }
 });
 
 export const config = {
-  matcher: ['/((?!.+\\.[\\w]+$|_next).*)', '/', '/(api|trpc)(.*)'],
+  matcher: ['/users/:id*'], // /users/[id] とそのサブパス（/users/[id]/category など）に適用
 };
