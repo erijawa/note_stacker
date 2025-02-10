@@ -1,4 +1,9 @@
 class Api::V1::UsersController < ApplicationController
+  def show
+    @posts = Post.where(user_id: params[:id])
+    render json: @posts, status: :ok
+  end
+
   def create
     begin
       @user = User.find_by(provider: params.dig(:user, :provider), provider_id: params.dig(:user, :providerId))
