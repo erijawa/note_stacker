@@ -2,7 +2,11 @@ import PostCardList from "@/components/ui/PostCardList";
 import { getPostsByUserId } from "@/lib/api/user";
 import { Post } from "@/types/post";
 
-export default async function MyPage({ params }: { params: { id: string } }) {
+type Props = {
+  params: Promise<{ id: string }>;
+};
+
+export default async function MyPage({ params }: Props) {
   const {id} = await params;
   const posts: Post[] = await getPostsByUserId(id);
   return (
