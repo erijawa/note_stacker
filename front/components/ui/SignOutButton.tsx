@@ -8,7 +8,7 @@ export default function SignOutButton() {
         await signOut();
       }}
     >
-      <button className='px-4 py-2 font-bold bg-gray-900 border-1 text-white border-black rounded hover:bg-gray-600 transition'>
+      <button className="px-4 py-2 bg-slate-500 text-white rounded-md hover:bg-slate-600 transition-colors">
         Sign Out
       </button>
     </form>
