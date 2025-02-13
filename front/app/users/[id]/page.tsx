@@ -12,7 +12,7 @@ export default async function MyPage({ params }: Props) {
   const posts: Post[] = await getPostsByUserId(id);
   return (
     <>
-      <div className="flex flex-col items-center justify-center h-screen">
+      <div className="flex flex-col items-center justify-center mt-20">
         <h1 className="text-4xl font-bold my-10">ここはMyPage!</h1>
         <ModalController />
         <PostCardList posts={posts}/>

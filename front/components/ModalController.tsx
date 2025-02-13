@@ -7,6 +7,7 @@
 
 import { useState } from "react";
 import Modal from "./ui/Modal";
+import PostForm from "./ui/PostForm";
 
 export default function ModalController() {
   const [isOpen, setIsOpen] = useState(false);
@@ -28,7 +29,13 @@ export default function ModalController() {
         Open Form
       </button>
       <Modal isOpen={isOpen}>
-        <button onClick={closeModal}>キャンセル</button>
+        <PostForm />
+        <button
+          onClick={closeModal}
+          className="w-full px-4 py-2 bg-white text-red-500 rounded-md hover:text-red-800 transition-colors my-4"
+        >
+          Cancel
+        </button>
       </Modal>
     </>
   );
