@@ -19,13 +19,13 @@ export async function createAction(formData: FormData) {
   redirect(`/users/${session?.user.id}`);
 }
 
-export async function updateAction(formData: FormData) {
+export async function updateAction(id: string | undefined, formData: FormData) {
   const url = formData.get("url") as string;
   const comment = formData.get("comment") as string;
-  const id = formData.get("id") as string;
   const session = await auth();
+  const user_id = session?.user.id;
   try {
-    await updatePost(id, url, comment);
+    await updatePost(id, url, comment, user_id);
   } catch (error) {
     console.error("編集失敗:", error);
   }

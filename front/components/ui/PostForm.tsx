@@ -1,13 +1,19 @@
 "use client";
 
-import { createAction } from "@/lib/actions/post";
+import { createAction, updateAction } from "@/lib/actions/post";
+import { Post } from "@/types/post";
 
-export default function PostForm() {
+type PostFormProps = {
+  post?: Post;
+}
+
+export default function PostForm({post}: PostFormProps) {
+  const updatePostWithId = updateAction.bind(null, post?.id);
   return (
     <>
       <div className="w-3/4 mx-auto mt-10">
-        <h1 className="text-2xl font-bold mb-4">新規登録</h1>
-        <form action={createAction}>
+        <h1 className="text-2xl font-bold mb-4">{` ${post ? "Edit" : "Create Post"}`}</h1>
+        <form action={post ? updatePostWithId: createAction}>
           <div>
             <label
               htmlFor="url"
@@ -18,6 +24,7 @@ export default function PostForm() {
             <input
               type="url"
               name="url"
+              defaultValue={post?.url}
               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
             />
           </div>
@@ -31,6 +38,7 @@ export default function PostForm() {
             <textarea
               name="comment"
               rows={3}
+              defaultValue={post?.comment}
               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
             ></textarea>
           </div>

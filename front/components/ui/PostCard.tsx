@@ -1,7 +1,7 @@
-import { deleteAction } from "@/lib/actions/post";
 import { Post } from "@/types/post";
 import Link from "next/link";
 import DeleteBtn from "./DeleteBtn";
+import ModalController from "../ModalController";
 
 type Props = {
   post: Post;
@@ -37,7 +37,10 @@ export default function PostCard({ post }: Props) {
           </div>
         )}
       </Link>
+      <div className="flex mt-4 justify-end">
+      <ModalController post={post} />
       <DeleteBtn id={post.id} />
+      </div>
     </div>
   );
 }

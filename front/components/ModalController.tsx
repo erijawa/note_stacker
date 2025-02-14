@@ -8,8 +8,13 @@
 import { useState } from "react";
 import Modal from "./ui/Modal";
 import PostForm from "./ui/PostForm";
+import { Post } from "@/types/post";
 
-export default function ModalController() {
+type ModalControllerProps = {
+  post?: Post;
+};
+
+export default function ModalController({ post }: ModalControllerProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   const openModal = () => {
@@ -24,12 +29,16 @@ export default function ModalController() {
     <>
       <button
         onClick={openModal}
-        className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors"
+        className={`px-4 py-2 text-white rounded-md transition-colors w-1/3 md:w-1/6 ${
+          post
+            ? "bg-lime-500 hover:bg-lime-600"
+            : "bg-emerald-500 hover:bg-emerald-600"
+        }`}
       >
-        Open Form
+        {` ${post ? "Edit" : "Create Post"}`}
       </button>
       <Modal isOpen={isOpen}>
-        <PostForm />
+        <PostForm post={post}/>
         <button
           onClick={closeModal}
           className="w-full px-4 py-2 bg-white text-red-500 rounded-md hover:text-red-800 transition-colors my-4"
