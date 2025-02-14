@@ -1,13 +1,15 @@
-import { Post } from '@/types/post'
-import Link from 'next/link'
+import { deleteAction } from "@/lib/actions/post";
+import { Post } from "@/types/post";
+import Link from "next/link";
+import DeleteBtn from "./DeleteBtn";
 
 type Props = {
   post: Post;
 };
 
 export default function PostCard({ post }: Props) {
-  return(
-    <div className="bg-white rounded-lg shadow-md p-4 my-4">
+  return (
+    <div className="bg-white rounded-lg shadow-md p-4 my-4 flex flex-col">
       <Link href={post.url} target="_blank">
         <div className="flex items-start space-x-4">
           <img
@@ -17,7 +19,7 @@ export default function PostCard({ post }: Props) {
             src="/placeholder.png"
             // src={post.article.ogImage || "/placeholder.svg"}
             // style={{
-              // aspectRatio: "1/1",
+            // aspectRatio: "1/1",
             //   objectFit: "cover",
             // }}
             width="120"
@@ -25,9 +27,7 @@ export default function PostCard({ post }: Props) {
           <div className="space-y-2">
             {/* urlから取得した記事タイトルを反映予定 */}
             <h2 className="text-xl font-bold text-[#16404D]">タイトル</h2>
-            <p className="text-gray-700">
-              {/* {post.article.description} */}
-            </p>
+            <p className="text-gray-700">{/* {post.article.description} */}</p>
           </div>
         </div>
         {post.comment && (
@@ -37,6 +37,7 @@ export default function PostCard({ post }: Props) {
           </div>
         )}
       </Link>
+      <DeleteBtn id={post.id} />
     </div>
-  )
+  );
 }

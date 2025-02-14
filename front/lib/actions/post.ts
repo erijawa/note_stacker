@@ -1,7 +1,7 @@
 "use server"
 
 import { auth } from "@/auth";
-import { createPost, updatePost } from "@/lib/api/post";
+import { createPost, deletePost, updatePost } from "@/lib/api/post";
 import { redirect } from "next/navigation";
 
 
@@ -26,6 +26,16 @@ export async function updateAction(formData: FormData) {
   const session = await auth();
   try {
     await updatePost(id, url, comment);
+  } catch (error) {
+    console.error("編集失敗:", error);
+  }
+  redirect(`/users/${session?.user.id}`);
+}
+
+export async function deleteAction(id: string) {
+  const session = await auth();
+  try {
+    await deletePost(id);
   } catch (error) {
     console.error("編集失敗:", error);
   }
