@@ -10,10 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_02_07_023157) do
+ActiveRecord::Schema[7.2].define(version: 2025_02_10_062408) do
   create_table "posts", id: { type: :string, limit: 36 }, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "user_id", null: false
-    t.string "title", null: false
     t.text "comment"
     t.text "url", null: false
     t.datetime "created_at", null: false

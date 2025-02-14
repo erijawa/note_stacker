@@ -30,6 +30,6 @@ class Api::V1::PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :comment, :url).merge(user_id: params[:user_id])
+    params.require(:post).permit(:comment, :url).merge(user_id: params[:user_id])
   end
 end
