@@ -1,4 +1,4 @@
-import { QiitaArticleType, QiitaResponseType } from "@/types/qiita";
+import { QiitaArticleType } from "@/types/qiita";
 
 export const getQiitaArticles = async () => {
   const API = process.env.QIITA_API_KEY;
@@ -14,8 +14,8 @@ export const getQiitaArticles = async () => {
       cache: "no-cache",
     }
   );
-  const json: QiitaResponseType = await response.json();
-  const articles: QiitaArticleType[] = json.items.map(article => ({
+  const json = await response.json();
+  const articles = json.map((article: QiitaArticleType) => ({
     title: article.title,
     url: article.url
   }));
