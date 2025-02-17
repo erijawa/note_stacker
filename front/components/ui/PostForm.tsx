@@ -1,13 +1,15 @@
 "use client";
 
 import { createAction, updateAction } from "@/lib/actions/post";
+import { ArticleType } from "@/types/article";
 import { Post } from "@/types/post";
 
 type PostFormProps = {
   post?: Post;
+  article?: ArticleType;
 }
 
-export default function PostForm({post}: PostFormProps) {
+export default function PostForm({post, article}: PostFormProps) {
   const updatePostWithId = updateAction.bind(null, post?.id);
   return (
     <>
@@ -24,7 +26,7 @@ export default function PostForm({post}: PostFormProps) {
             <input
               type="url"
               name="url"
-              defaultValue={post?.url}
+              defaultValue={post?.url || article?.url}
               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
             />
           </div>
