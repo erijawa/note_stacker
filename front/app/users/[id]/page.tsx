@@ -1,6 +1,8 @@
 import ModalController from "@/components/ModalController";
 import PostCardList from "@/components/ui/PostCardList";
+import { getCategoriesByUserId } from "@/lib/api/category";
 import { getPostsByUserId } from "@/lib/api/user";
+import { Category } from "@/types/category";
 import { Post } from "@/types/post";
 
 type Props = {
@@ -10,6 +12,7 @@ type Props = {
 export default async function MyPage({ params }: Props) {
   const {id} = await params;
   const posts: Post[] = await getPostsByUserId(id);
+  const categories: Category[] = await getCategoriesByUserId(id);
   return (
     <>
       <div className="flex flex-col items-center justify-center mt-20">
