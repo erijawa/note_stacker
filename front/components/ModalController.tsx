@@ -14,9 +14,10 @@ import { ArticleType } from "@/types/article";
 type ModalControllerProps = {
   post?: Post;
   article?: ArticleType;
+  categories: string[]
 };
 
-export default function ModalController({ post, article }: ModalControllerProps) {
+export default function ModalController({ post, article, categories }: ModalControllerProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   const openModal = () => {
@@ -40,7 +41,7 @@ export default function ModalController({ post, article }: ModalControllerProps)
         {` ${post ? "Edit" : "Create Post"}`}
       </button>
       <Modal isOpen={isOpen}>
-        <PostForm post={post} article={article}/>
+        <PostForm post={post} article={article} categories={categories}/>
         <button
           onClick={closeModal}
           className="w-full px-4 py-2 bg-white text-red-500 rounded-md hover:text-red-800 transition-colors my-4"
