@@ -1,35 +1,32 @@
-"use server"
+"use server";
 
 import { auth } from "@/auth";
 import { createPost, deletePost, updatePost } from "@/lib/api/post";
 import { redirect } from "next/navigation";
 
-
-export async function createAction(formData: FormData) {
-  const url = formData.get("url") as string;
-  console.log(url)
-  const comment = formData.get("comment") as string;
+export async function createAction(postData: {
+  url: string;
+  comment: string;
+  categories: string[];
+}) {
+  const url = postData.url;
+  const comment = postData.comment;
+  const categories = postData.categories;
   const session = await auth();
   const user_id = session?.user.id;
-  try {
-    await createPost(url, comment, user_id);
-  } catch (error) {
-    console.error("投稿失敗:", error);
-  }
-  redirect(`/users/${session?.user.id}`);
+  await createPost(url, comment, categories, user_id);
 }
 
-export async function updateAction(id: string | undefined, formData: FormData) {
-  const url = formData.get("url") as string;
-  const comment = formData.get("comment") as string;
+export async function updateAction(
+  id: string | undefined,
+  postData: { url: string; comment: string; categories: string[] }
+) {
+  const url = postData.url;
+  const comment = postData.comment;
+  const categories = postData.categories;
   const session = await auth();
   const user_id = session?.user.id;
-  try {
-    await updatePost(id, url, comment, user_id);
-  } catch (error) {
-    console.error("編集失敗:", error);
-  }
-  redirect(`/users/${session?.user.id}`);
+  await updatePost(id, url, comment, categories, user_id);
 }
 
 export async function deleteAction(id: string) {

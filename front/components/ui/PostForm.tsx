@@ -3,19 +3,35 @@
 import { createAction, updateAction } from "@/lib/actions/post";
 import { ArticleType } from "@/types/article";
 import { Post } from "@/types/post";
+import { useRouter } from "next/navigation";
+
 import { useState } from "react";
 
 type PostFormProps = {
   post?: Post;
   article?: ArticleType;
   categories: string[];
+  closeModal: () => void;
 };
 
-export default function PostForm({ post, article, categories }: PostFormProps) {
+export default function PostForm({
+  post,
+  article,
+  categories,
+  closeModal,
+}: PostFormProps) {
+  const router = useRouter();
   const updatePostWithId = updateAction.bind(null, post?.id);
+  const categoryNames = post?.categories.map((category) => category.name);
   const [categoryList, setCategoryList] = useState<
     { name: string; checked: boolean }[]
-  >(categories.map((cat) => ({ name: cat, checked: false })));
+  >(
+    categories.map((cat) =>
+      categoryNames?.includes(cat)
+        ? { name: cat, checked: true }
+        : { name: cat, checked: false }
+    )
+  );
   const [newCategory, setNewCategory] = useState("");
 
   const handleCategoryToggle = (category: string) => {
@@ -35,13 +51,50 @@ export default function PostForm({ post, article, categories }: PostFormProps) {
       setNewCategory("");
     }
   };
+
+  // フォーム送信時の処理
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    // チェックされたカテゴリーの名前を配列として取得
+    const selectedCategories = categoryList
+      .filter((category) => category.checked)
+      .map((category) => category.name);
+
+    const formData = new FormData(e.target as HTMLFormElement);
+    const url = formData.get("url") as string;
+    const comment = formData.get("comment") as string;
+
+    const postData = {
+      url,
+      comment,
+      categories: selectedCategories,
+    };
+
+    try {
+      if (post) {
+        // 既存の投稿を更新する場合
+        await updatePostWithId(postData);
+      } else {
+        // 新しい投稿を作成する場合
+        await createAction(postData);
+      }
+      // モーダルを閉じる
+      closeModal();
+
+      router.refresh(); // モーダルを閉じた後にリフレッシュ
+    } catch (error) {
+      console.error("Error submitting the post:", error);
+    }
+  };
+
   return (
     <>
       <div className="w-3/4 mx-auto mt-10">
         <h1 className="text-2xl font-bold mb-4">{` ${
           post ? "Edit" : "Create Post"
         }`}</h1>
-        <form action={post ? updatePostWithId : createAction}>
+        <form onSubmit={handleSubmit}>
           <div>
             <label
               htmlFor="url"

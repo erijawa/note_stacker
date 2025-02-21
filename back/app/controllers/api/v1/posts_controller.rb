@@ -3,7 +3,7 @@ class Api::V1::PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params.except(:categories)) # categoriesを除外して保存
-    sent_category = params[:categories] || []
+    sent_category = post_params[:categories] || []
     if @post.save && @post.save_category(sent_category, params[:user_id])
       render json: @post, status: :created
     else
@@ -12,7 +12,7 @@ class Api::V1::PostsController < ApplicationController
   end
 
   def update
-    sent_category = params[:categories] || []
+    sent_category = post_params[:categories] || []
     if @post.update(post_params.except(:categories)) && @post.save_category(sent_category, params[:user_id])
       render json: @post, status: :ok
     else

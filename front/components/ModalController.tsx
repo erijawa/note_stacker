@@ -41,7 +41,7 @@ export default function ModalController({ post, article, categories }: ModalCont
         {` ${post ? "Edit" : "Create Post"}`}
       </button>
       <Modal isOpen={isOpen}>
-        <PostForm post={post} article={article} categories={categories}/>
+        <PostForm post={post} article={article} categories={categories} closeModal={closeModal} />
         <button
           onClick={closeModal}
           className="w-full px-4 py-2 bg-white text-red-500 rounded-md hover:text-red-800 transition-colors my-4"

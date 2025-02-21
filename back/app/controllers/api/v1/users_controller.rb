@@ -1,6 +1,6 @@
 class Api::V1::UsersController < ApplicationController
   def show
-    posts = Post.includes(:categories).where(user_id: params[:id])
+    posts = Post.includes(:categories).where(user_id: params[:id]).order(updated_at: :desc)
     posts_with_categories = posts.map do |post|
       PostSerializer.new(post)
     end

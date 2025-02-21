@@ -1,15 +1,18 @@
+import { auth } from "@/auth";
 import ModalController from "@/components/ModalController";
 import PostCardList from "@/components/ui/PostCardList";
 import { getCategoriesByUserId } from "@/lib/api/category";
 import { getPostsByUserId } from "@/lib/api/user";
 import { Post } from "@/types/post";
 
-type Props = {
-  params: Promise<{ id: string }>;
-};
+// type Props = {
+//   params: Promise<{ id: string }>;
+// };
 
-export default async function MyPage({ params }: Props) {
-  const {id} = await params;
+export default async function MyPage() {
+  // const {id} = await params;
+  const session = await auth();
+  const id = session?.user.id;
   const posts: Post[] = await getPostsByUserId(id);
   const categories: string[] = await getCategoriesByUserId(id);
   return (
