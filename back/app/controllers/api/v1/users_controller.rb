@@ -1,7 +1,10 @@
 class Api::V1::UsersController < ApplicationController
   def show
-    @posts = Post.where(user_id: params[:id])
-    render json: @posts, status: :ok
+    posts = Post.includes(:categories).where(user_id: params[:id]).order(updated_at: :desc)
+    posts_with_categories = posts.map do |post|
+      PostSerializer.new(post)
+    end
+    render json: posts_with_categories, status: :ok
   end
 
   def create

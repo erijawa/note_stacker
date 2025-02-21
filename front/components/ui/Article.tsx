@@ -35,7 +35,7 @@ export default async function Article({ article }: Props) {
       </Link>
       {session && (
         <div className="flex mt-4 justify-end">
-          <ModalController article={article}/>
+          <ModalController article={article} categories={[]}/>
         </div>
       )}
     </div>
