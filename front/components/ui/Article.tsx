@@ -19,7 +19,7 @@ export default async function Article({ article }: Props) {
         target="_blank"
         className="p-4 rounded-lg hover:bg-stone-100"
       >
-        <div className="flex items-start space-x-4">
+        <div className="flex flex-col md:flex-row md:items-start md:space-x-4 space-y-2">
           {article.urlToImage && (
             <img
               className="w-30 h-24 object-cover rounded-md"
