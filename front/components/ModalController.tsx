@@ -9,15 +9,14 @@ import { useState } from "react";
 import Modal from "./ui/Modal";
 import PostForm from "./ui/PostForm";
 import { Post } from "@/types/post";
-import { ArticleType } from "@/types/article";
 
 type ModalControllerProps = {
   post?: Post;
-  article?: ArticleType;
+  url?: string;
   categories: string[]
 };
 
-export default function ModalController({ post, article, categories }: ModalControllerProps) {
+export default function ModalController({ post, url, categories }: ModalControllerProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   const openModal = () => {
@@ -41,7 +40,7 @@ export default function ModalController({ post, article, categories }: ModalCont
         {` ${post ? "Edit" : "Create Post"}`}
       </button>
       <Modal isOpen={isOpen}>
-        <PostForm post={post} article={article} categories={categories} closeModal={closeModal} />
+        <PostForm post={post} url={url} categories={categories} closeModal={closeModal} />
         <button
           onClick={closeModal}
           className="w-full px-4 py-2 bg-white text-red-500 rounded-md hover:text-red-800 transition-colors my-4"

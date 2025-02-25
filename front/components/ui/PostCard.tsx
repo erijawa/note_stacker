@@ -4,6 +4,7 @@ import DeleteBtn from "./DeleteBtn";
 import ModalController from "../ModalController";
 import { auth } from "@/auth";
 import { getCategoriesByUserId } from "@/lib/api/category";
+import { getOgp } from "@/lib/ogp";
 
 type Props = {
   post: Post;
@@ -13,6 +14,7 @@ export default async function PostCard({ post }: Props) {
   const session = await auth();
   const id = session?.user.id;
   const categories: string[] = await getCategoriesByUserId(id);
+  const ogp = await getOgp(`${post.url}`);
 
   return (
     <div className="rounded-lg shadow-md p-4 my-4 flex flex-col">
@@ -21,23 +23,20 @@ export default async function PostCard({ post }: Props) {
         target="_blank"
         className="p-4 rounded-lg hover:bg-stone-100"
       >
-        <div className="flex items-start space-x-4">
+        <div className="flex flex-col md:flex-row md:items-start md:space-x-4 space-y-2">
           <img
             alt="Article thumbnail"
             className="w-30 h-24 object-cover rounded-md"
             height="100"
-            src="/placeholder.png"
-            // src={post.article.ogImage || "/placeholder.svg"}
-            // style={{
-            // aspectRatio: "1/1",
-            //   objectFit: "cover",
-            // }}
+            src={(ogp?.ogImage && ogp?.ogImage.length > 0 && ogp?.ogImage[0]?.url) || "/placeholder.png"}
+            style={{
+            aspectRatio: "1/1",
+              objectFit: "cover",
+            }}
             width="120"
           />
           <div className="space-y-2">
-            {/* urlから取得した記事タイトルを反映予定 */}
-            <h2 className="text-xl font-bold ">タイトル</h2>
-            <p className="text-gray-700">{/* {post.article.description} */}</p>
+            <h2 className="text-xl font-bold ">{ogp?.ogTitle ?? "No Title"}</h2>
           </div>
         </div>
         <div className="flex flex-wrap gap-2 my-2">

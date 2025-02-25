@@ -8,6 +8,14 @@ export default async function Header() {
 
   return (
     <header className="flex justify-center border-b px-10 top-0 left-0 z-50 bg-white fixed w-full">
+      <div className="flex items-center justify-start w-full h-16 gap-6">
+      <Link
+            href="/"
+            className="font-bold px-4 py-2 bg-white rounded-md hover:bg-slate-600 hover:text-white transition-colors"
+          >
+            Note Stacker
+          </Link>
+      </div>
       <div className="flex items-center justify-end w-full h-16 gap-6">
         {/* {session && <p className="font-bold">{session.user.name} さん</p>} */}
         {session && (
