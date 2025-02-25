@@ -2,12 +2,15 @@ import { auth } from "@/auth";
 import { ArticleType } from "@/types/article";
 import Link from "next/link";
 import ModalController from "../ModalController";
+import { getCategoriesByUserId } from "@/lib/api/category";
 
 type Props = {
   article: ArticleType;
 };
 export default async function Article({ article }: Props) {
   const session = await auth();
+  const id = session?.user.id;
+  const categories: string[] = await getCategoriesByUserId(id);
 
   return (
     <div className="rounded-lg shadow-md p-4 my-4 flex flex-col">
@@ -35,7 +38,7 @@ export default async function Article({ article }: Props) {
       </Link>
       {session && (
         <div className="flex mt-4 justify-end">
-          <ModalController article={article} categories={[]}/>
+          <ModalController article={article} categories={categories} />
         </div>
       )}
     </div>

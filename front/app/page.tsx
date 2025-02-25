@@ -10,8 +10,7 @@ export default async function RootPage() {
   console.log(qiitaArticles)
   return (
     <>
-      <div className="flex flex-col items-center justify-center h-screen">
-        <h1 className="text-4xl font-bold my-10">ここはRoot Page!</h1>
+      <div className="flex flex-col items-center justify-center mt-10">
         <ArticleList articles={articles} />
       </div>
     </>
