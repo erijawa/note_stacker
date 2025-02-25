@@ -1,7 +1,6 @@
 "use client";
 
 import { createAction, updateAction } from "@/lib/actions/post";
-import { ArticleType } from "@/types/article";
 import { Post } from "@/types/post";
 import { useRouter } from "next/navigation";
 
@@ -9,14 +8,14 @@ import { useState } from "react";
 
 type PostFormProps = {
   post?: Post;
-  article?: ArticleType;
+  url?: string;
   categories: string[];
   closeModal: () => void;
 };
 
 export default function PostForm({
   post,
-  article,
+  url,
   categories,
   closeModal,
 }: PostFormProps) {
@@ -105,7 +104,7 @@ export default function PostForm({
             <input
               type="url"
               name="url"
-              defaultValue={post?.url || article?.url}
+              defaultValue={post?.url || url}
               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
             />
           </div>

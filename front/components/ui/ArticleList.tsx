@@ -12,7 +12,7 @@ export default function ArticleList({ articles }: Props) {
         <h1 className="text-2xl font-bold mb-4">News</h1>
         <div className="w-full">
           {articles.map((article: ArticleType) => (
-            <Article key={article.title} article={article} />
+            <Article key={article.url} url={article.url} />
           ))}
         </div>
       </div>
