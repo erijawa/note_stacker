@@ -9,8 +9,8 @@ export default async function RootPage() {
   return (
     <>
       <div className="flex flex-col items-center justify-center mt-10">
-        <ArticleList articles={articles} />
-        <ArticleList articles={qiitaUrls} />
+        <ArticleList articles={articles} title="TechCrunch" />
+        <ArticleList articles={qiitaUrls} title="Qiita" />
       </div>
     </>
   );
