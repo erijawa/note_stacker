@@ -9,7 +9,7 @@ export default function SignOutButton() {
       }}
     >
       <button className="px-4 py-2 bg-slate-500 text-white rounded-md hover:bg-slate-600 transition-colors">
-        Sign Out
+        SignOut
       </button>
     </form>
   )
