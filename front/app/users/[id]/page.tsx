@@ -6,6 +6,10 @@ import { getCategoriesByUserId } from "@/lib/api/category";
 import { getPostsByUserId } from "@/lib/api/user";
 import { Post } from "@/types/post";
 
+type Props = {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+};
+
 function filterPosts(posts: Post[], category: string): Post[] {
   if (category === "all") {
     return posts;
@@ -15,11 +19,7 @@ function filterPosts(posts: Post[], category: string): Post[] {
   );
 }
 
-export default async function MyPage({
-  searchParams,
-}: {
-  searchParams: { [key: string]: string | string[] | undefined };
-}) {
+export default async function MyPage({ searchParams }: Props) {
   const searchWord = await searchParams;
   const session = await auth();
   const id = session?.user.id;
