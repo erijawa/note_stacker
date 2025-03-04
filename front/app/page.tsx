@@ -12,14 +12,12 @@ export default async function RootPage() {
   const articles: ArticleType[] = await getNews();
   const qiitaUrls: ArticleType[] = await getQiitaArticles();
   const OPTIONS: EmblaOptionsType = { dragFree: true };
-  const SLIDE_COUNT = 5;
-  const SLIDES = Array.from(Array(SLIDE_COUNT).keys());
   return (
     <>
       <div className="flex flex-col items-center justify-center mt-20">
         <h1 className="font-bold text-5xl my-10">Note Stacker</h1>
         <p className="font-bold text-2xl my-10">Note Stackerでできること</p>
-        <EmblaCarousel slides={SLIDES} options={OPTIONS} />
+        <EmblaCarousel options={OPTIONS} />
         {!session && (
           <div className="my-10">
             <p className="text-center font-bold text-xl">ログインはこちら</p>
