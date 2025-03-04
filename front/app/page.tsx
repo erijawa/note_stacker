@@ -17,11 +17,10 @@ export default async function RootPage() {
     <>
       <div className="flex flex-col items-center justify-center mt-20">
         <h1 className="font-bold text-5xl my-10">Note Stacker</h1>
-        <p className="font-bold text-2xl my-10">Note Stackerでできること</p>
         <EmblaCarousel options={OPTIONS} />
         {!session && (
           <div className="my-10">
-            <p className="text-center font-bold text-xl">ログインはこちら</p>
+            <p className="text-center font-bold text-xl">GetStarted</p>
             <SignInButton />
           </div>
         )}

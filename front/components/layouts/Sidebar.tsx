@@ -15,11 +15,11 @@ export default function Sidebar({ id, categories, selectedCategory }: Props) {
   return (
     <>
       <button
-        className="lg:hidden fixed top-4 left-4 z-20 bg-white p-2 rounded-md shadow-md mt-20"
+        className="lg:hidden fixed top-4 left-4 z-20 p-2 rounded-md mt-20"
         onClick={toggleSidebar}
         aria-label="Toggle sidebar"
       >
-        {isOpen ? "X" : "Category"}
+        {isOpen ? "X" : "Menu"}
       </button>
       <aside
         className={`${

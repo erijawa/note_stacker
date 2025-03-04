@@ -33,7 +33,9 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
             <h4 className="mb-4 text-2xl font-semibold">
               気になる記事をコメント付きで投稿
             </h4>
-            <div className="flex justify-center items-baseline my-8"></div>
+            <div className="flex justify-center items-baseline my-8">
+            <a href="https://gyazo.com/3ef84cb8f80facf6adde406fdc0ef733"><img src="https://i.gyazo.com/3ef84cb8f80facf6adde406fdc0ef733.png" alt="Image from Gyazo" width="1031"/></a>
+            </div>
             <h4 className="text-2xl font-semibold">カテゴリも作成可能</h4>
           </div>
           {/* スライド2 */}
@@ -41,7 +43,9 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
             <h4 className="mb-4 text-2xl font-semibold">
               マイページで投稿一覧を閲覧
             </h4>
-            <div className="flex justify-center items-baseline my-8"></div>
+            <div className="flex justify-center items-baseline my-8">
+            <a href="https://gyazo.com/9f961c9f820274c1c107381db011eb74"><img src="https://i.gyazo.com/9f961c9f820274c1c107381db011eb74.png" alt="Image from Gyazo" width="1033"/></a>
+            </div>
             <h4 className="mb-4 text-2xl font-semibold">
               カテゴリによる絞り込みも可能
             </h4>

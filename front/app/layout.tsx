@@ -1,15 +1,10 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import { Zen_Old_Mincho } from "next/font/google";
 import "./styles/globals.css";
 import "./styles/embla.css";
 import Header from "@/components/layouts/Header";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const zenOldMincho = Zen_Old_Mincho({
+  weight: "400",
   subsets: ["latin"],
 });
 
@@ -30,10 +25,8 @@ export default function RootLayout({
         <meta name="description" content={metadata.description} />
         <link rel="icon" href="/favicon.ico" />
       </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <Header/>
+      <body className={zenOldMincho.className}>
+        <Header />
         {children}
       </body>
     </html>
