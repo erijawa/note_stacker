@@ -12,6 +12,7 @@ export default async function RootPage() {
   const articles: ArticleType[] = await getNews();
   const qiitaUrls: ArticleType[] = await getQiitaArticles();
   const OPTIONS: EmblaOptionsType = { dragFree: true };
+
   return (
     <>
       <div className="flex flex-col items-center justify-center mt-20">

@@ -10,7 +10,6 @@ import {
 import useEmblaCarousel from "embla-carousel-react";
 
 type PropType = {
-  slides: number[];
   options?: EmblaOptionsType;
 };
 
